@@ -1562,7 +1562,7 @@ Contributions are welcome, particularly:
 A: Some configurations produce positive risk-adjusted returns in backtests on some instruments. Whether they will in future is unknown, and the framework reports the evidence for edge decay rather than hiding it. Treat any backtest as a hypothesis, not a result.
 
 **Q: Why only SMA and MACD as the core?**
-A: Because they encode the two fundamental properties — level and momentum — with minimal parameter count. Adding more indicators mostly adds correlated noise. The framework includes others, but the baseline deliberately stays simple so that any improvement is attributable.
+A: Because they encode the two fundamental properties level and momentum with minimal parameter count. Adding more indicators mostly adds correlated noise. The framework includes others, but the baseline deliberately stays simple so that any improvement is attributable.
 
 **Q: Why include China50 if technical analysis works poorly on it?**
 A: Precisely because it works poorly. Including it makes the cross-instrument comparison honest. A framework that only tests instruments where its method works is a framework designed to flatter itself.
@@ -1625,7 +1625,7 @@ SOFTWARE.
 
 ## Final Word
 
-Technical analysis is a discipline of pattern recognition applied to a system that is partly, but not entirely, patterned. SMA and MACD are useful because they formalise two real properties of price series — that prices trend, and that trends accelerate and decelerate. They are not useful because they predict the future. Nothing predicts the future.
+Technical analysis is a discipline of pattern recognition applied to a system that is partly, but not entirely, patterned. SMA and MACD are useful because they formalise two real properties of price series, prices, trend, and that trends accelerate and decelerate. They are not useful because they predict the future. Nothing predicts the future.
 
 The value of this framework is not in the signals it produces. It is in the discipline it enforces: cost realism, out-of-sample validation, cross-instrument robustness, and an honest reporting of when the strategy does not work. That discipline is transferable to any method you choose to test, and it is worth more than any single indicator.
 
