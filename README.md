@@ -18,7 +18,7 @@ Advanced Trading Bot is a Python-powered platform that blends technical analysis
 
 **This software is for research and educational purposes only. It is not financial advice, and it is not a trading recommendation system.**
 
-Nothing in this repository constitutes investment advice, a solicitation, or an offer to buy or sell any financial instrument. Trading Contracts for Difference (CFDs) and cryptocurrencies involves substantial risk of loss and is not suitable for every investor. Leverage amplifies both gains and losses, and you may lose more than your initial deposit. Past performance — including all backtested results produced by this software — is not indicative of future results.
+Nothing in this repository constitutes investment advice, a solicitation, or an offer to buy or sell any financial instrument. Trading Contracts for Difference (CFDs) and cryptocurrencies involves substantial risk of loss and is not suitable for every investor. Leverage amplifies both gains and losses, and you may lose more than your initial deposit. Past performance including all backtested results produced by this software is not indicative of future results.
 
 **Predictive models in this repository are statistical estimates, not forecasts.** They are trained on historical data, they carry error, and they degrade when market regimes change. You are solely responsible for any decision you make. Always consult a licensed financial advisor and never trade money you cannot afford to lose.
 
@@ -386,7 +386,7 @@ Max DD duration              143 days
 Buy and hold CAGR            11.03%
 ```
 
-Note the last line. In this configuration, buy-and-hold beats the strategy on CAGR — which is a genuinely useful finding, and one the framework will not hide from you.
+Note the last line. In this configuration, buy-and-hold beats the strategy on CAGR which is a genuinely useful finding, and one the framework will not hide from you.
 
 ---
 
@@ -409,7 +409,7 @@ The ten instruments below were selected because they collectively represent the 
 | **STOXX50E** | Euro Stoxx 50         | Euro    | 08:00–16:30     | Moderate         | Euro-bloc blue-chip, heavily option-traded   |
 | **BTCUSD**   | Bitcoin               | Global  | 24/7            | Very High        | No close, weekend risk, exchange-dependent   |
 
-*Session times are approximate and shift with daylight-saving transitions. Spread and volatility figures are indicative — they vary substantially by broker and by market regime.*
+*Session times are approximate and shift with daylight-saving transitions. Spread and volatility figures are indicative. They vary substantially by broker and by market regime.*
 
 ### 8.2 US30 — Dow Jones Industrial Average
 
@@ -431,7 +431,7 @@ The benchmark against which most strategies should be measured. Five hundred lar
 
 One hundred of the largest non-financial companies listed on Nasdaq, dominated by technology. High beta to growth expectations and interest-rate sensitivity.
 
-**Analytical implications.** US100 trends hard and reverses hard. Momentum strategies (including MACD-based ones) historically perform better here than mean-reversion strategies. Volatility clustering is pronounced — ATR-based position sizing is strongly recommended, since fixed-lot sizing produces wildly variable risk.
+**Analytical implications.** US100 trends hard and reverses hard. Momentum strategies (including MACD-based ones) historically perform better here than mean-reversion strategies. Volatility clustering is pronounced ATR-based position sizing is strongly recommended, since fixed-lot sizing produces wildly variable risk.
 
 **CFD notes.** Gaps at the open are common and can blow through stop-losses. The framework models gap risk in the execution layer.
 
@@ -439,7 +439,7 @@ One hundred of the largest non-financial companies listed on Nasdaq, dominated b
 
 Forty large French companies, cap-weighted. Heavily concentrated in luxury goods, industrials, and pharmaceuticals. Significant foreign revenue exposure means the index is sensitive to EUR/USD.
 
-**Analytical implications.** Lower average daily range than US indices. SMA signals are comparatively smooth but produce fewer actionable crossovers per year. The MACD histogram on CAC40 tends to stay near zero for extended periods — a signal of low directional conviction rather than a trading opportunity.
+**Analytical implications.** Lower average daily range than US indices. SMA signals are comparatively smooth but produce fewer actionable crossovers per year. The MACD histogram on CAC40 tends to stay near zero for extended periods. A signal of low directional conviction rather than a trading opportunity.
 
 ### 8.6 China50 — FTSE China A50
 
@@ -459,7 +459,7 @@ Germany's blue-chip index, cap-weighted, heavily weighted toward manufacturing, 
 
 One hundred largest UK-listed companies, cap-weighted, but with a critical quirk: a large share of constituent revenue is earned in USD. The index is therefore negatively correlated with GBP/USD.
 
-**Analytical implications.** When sterling weakens, FTSE100 rises even if underlying corporate performance is flat — a currency effect that has nothing to do with technical structure. The lowest-volatility instrument in the set, which means SMA windows should be shorter in absolute price terms but the same in bar count.
+**Analytical implications.** When sterling weakens, FTSE100 rises even if underlying corporate performance is flat. A currency effect that has nothing to do with technical structure. The lowest-volatility instrument in the set, which means SMA windows should be shorter in absolute price terms but the same in bar count.
 
 ### 8.9 NIKKEI225 — Nikkei 225
 
@@ -633,7 +633,7 @@ cross_up   = fast_above & (~fast_above.shift(1).fillna(False))
 cross_down = (~fast_above) & (fast_above.shift(1).fillna(False))
 ```
 
-Note that `shift(1)` is essential — without it, the comparison is between a value and itself, and the signal becomes trivially wrong.
+Note that `shift(1)` is essential without it, the comparison is between a value and itself, and the signal becomes trivially wrong.
 
 ### 11.6 Choosing Windows
 
@@ -670,7 +670,7 @@ The last point is the most important. An SMA crossover will generate trades whet
 
 ## 12. Moving Average Convergence Divergence (MACD)
 
-MACD, developed by Gerald Appel in the late 1970s, converts the relationship between two EMAs into a momentum oscillator. It is the single most widely used momentum indicator, and — unlike many indicators — it has a coherent interpretation grounded in the difference between fast and slow smoothing.
+MACD, developed by Gerald Appel in the late 1970s, converts the relationship between two EMAs into a momentum oscillator. It is the single most widely used momentum indicator, and unlike many indicators. It has a coherent interpretation grounded in the difference between fast and slow smoothing.
 
 ### 12.1 Definition
 
@@ -694,17 +694,17 @@ $$
 
 ### 12.2 Interpretation
 
-**The MACD line** is the difference between a fast and a slow EMA. When it is positive, the fast EMA is above the slow EMA — short-term prices are higher than longer-term prices, which is the definition of an uptrend. When negative, the reverse.
+**The MACD line** is the difference between a fast and a slow EMA. When it is positive, the fast EMA is above the slow EMA short-term prices are higher than longer-term prices, which is the definition of an uptrend. When negative, the reverse.
 
 Crucially, the MACD line is **not** a measure of price momentum in absolute terms; it is a measure of the *spread between two smoothed prices*. Its absolute value scales with the price level of the instrument, which is why MACD values on US100 (index level ~20,000) are numerically enormous compared to those on BTCUSD in early years, and why MACD must never be compared across instruments without normalisation.
 
-**The signal line** is an EMA of the MACD line itself — a smoothed version of a smoothed difference. Crossovers between MACD and signal mark inflection points in momentum.
+**The signal line** is an EMA of the MACD line itself. A smoothed version of a smoothed difference. Crossovers between MACD and signal mark inflection points in momentum.
 
-**The histogram** is the gap between the two. It is the most informative of the three, because its *rate of change* — not its sign — carries the earliest signal. A histogram that is negative but rising indicates bearish momentum that is decelerating, which frequently precedes a crossover.
+**The histogram** is the gap between the two. It is the most informative of the three, because its *rate of change* — not its sign carries the earliest signal. A histogram that is negative but rising indicates bearish momentum that is decelerating, which frequently precedes a crossover.
 
 ### 12.3 Why 12, 26, 9?
 
-The defaults are historical artefacts of weekly trading in the 1970s: 12 and 26 days correspond roughly to two and four weeks of trading, and 9 to a week and a half. They are not optimised, and they are not magic. Their persistence is a coordination effect — because so many participants watch the same levels, the levels acquire a degree of self-fulfilling relevance. That is a real effect, but it is a behavioural one, not a statistical one, and it can decay.
+The defaults are historical artefacts of weekly trading in the 1970s: 12 and 26 days correspond roughly to two and four weeks of trading, and 9 to a week and a half. They are not optimised, and they are not magic. Their persistence is a coordination effect because so many participants watch the same levels, the levels acquire a degree of self-fulfilling relevance. That is a real effect, but it is a behavioural one, not a statistical one, and it can decay.
 
 The framework treats 12/26/9 as the default and provides parameter sweeps, but warns against over-tuning: MACD performance is far more sensitive to the *regime* than to the parameters.
 
@@ -731,7 +731,7 @@ m_norm = macd_normalized(df["close"], fast=12, slow=26, signal=9)
 
 The framework extracts five distinct signal families from MACD, each with different statistical properties:
 
-1. **Signal-line crossover.** MACD crosses above its signal line — bullish. This is the most common and the noisiest.
+1. **Signal-line crossover.** MACD crosses above its signal line bullish. This is the most common and the noisiest.
 2. **Zero-line crossover.** MACD crosses above zero — confirms trend change. Far fewer signals, higher precision, longer lag.
 3. **Histogram sign flip.** The histogram changes sign. Equivalent to a signal-line crossover but computationally useful for early detection.
 4. **Histogram slope reversal.** The histogram reverses direction while still on the same side of zero — an early warning of deceleration. Highest false-positive rate, earliest timing.
@@ -771,7 +771,7 @@ The `min_bars_between` and `max_bars_between` parameters matter enormously. With
 
 **Weaknesses**
 
-- Absolute values are not comparable across instruments — normalise before comparing
+- Absolute values are not comparable across instruments normalise before comparing
 - Whipsaws severely in sideways markets
 - Default parameters are conventional, not optimal, and may be over-watched
 - Divergence detection is subjective; naive implementations produce massive false-positive rates
@@ -779,7 +779,7 @@ The `min_bars_between` and `max_bars_between` parameters matter enormously. With
 
 ### 12.8 SMA + MACD Together
 
-Individually, each has a characteristic failure mode. SMA crossovers fail in ranges; MACD fails in choppy low-volatility conditions. Used together with a **confluence** requirement — both must agree before a position is taken — the false-signal rate drops substantially, at the cost of entering later and capturing less of each move.
+Individually, each has a characteristic failure mode. SMA crossovers fail in ranges; MACD fails in choppy low-volatility conditions. Used together with a **confluence** requirement both must agree before a position is taken — the false-signal rate drops substantially, at the cost of entering later and capturing less of each move.
 
 The framework quantifies this trade-off directly. In the US500 baseline configuration, requiring both SMA and MACD agreement reduced the number of trades from 184 to 61 over the same period, improved profit factor from 1.38 to 1.61, and reduced maximum drawdown from 18.4% to 11.2%. Total return fell. This is the expected shape of the trade-off: fewer, better trades.
 
@@ -1067,7 +1067,7 @@ Strength is used by the sizing layer (Section 19), not by the entry decision —
 
 ### 17.1 Event-Driven, Not Vectorised
 
-The engine is event-driven: it iterates bar by bar, maintaining portfolio state. This is slower than vectorised backtesting but correct, and correctness is the point. Vectorised backtests silently assume that you can trade at the close of the bar on which the signal fires — which is almost never true.
+The engine is event-driven: it iterates bar by bar, maintaining portfolio state. This is slower than vectorised backtesting but correct, and correctness is the point. Vectorised backtests silently assume that you can trade at the close of the bar on which the signal fires which is almost never true.
 
 ### 17.2 Execution Assumptions
 
@@ -1184,7 +1184,7 @@ Both are reported automatically whenever a parameter sweep is run.
 
 ## 19. Risk Management
 
-Risk management is not an optional layer in this framework — it is embedded in the execution model.
+Risk management is not an optional layer in this framework. It is embedded in the execution model.
 
 ### 19.1 Position Sizing Methods
 
@@ -1392,7 +1392,7 @@ medium       0.88      0.49          1.48         63
 high         1.34      0.56          1.92         50
 ```
 
-This kind of table is the single most useful diagnostic in the framework. It answers the question "when does this strategy work?" — and if the answer is "only in high-ADX trending regimes," you now know to add an ADX filter rather than trading it blind.
+This kind of table is the single most useful diagnostic in the framework. It answers the question "when does this strategy work?" and if the answer is "only in high-ADX trending regimes," you now know to add an ADX filter rather than trading it blind.
 
 ### 21.4 Model-Assisted Strategy
 
@@ -1574,7 +1574,7 @@ A: The framework has no execution layer, and adding one is out of scope. You cou
 A: Almost certainly look-ahead leakage. Check: (1) are signals shifted before execution, (2) does your target use future data in features, (3) are you purging overlapping labels, (4) are costs applied to every trade. In that order.
 
 **Q: What's the difference between this and backtrader/vectorbt?**
-A: Those are general backtesting engines. This is a research framework that bundles a specific methodology — SMA + MACD + regime filters + walk-forward ML — with an opinionated CFD cost model. You can use backtrader to build the same thing; this just saves you the first three months and the common mistakes.
+A: Those are general backtesting engines. This is a research framework that bundles a specific methodology. SMA + MACD + regime filters + walk-forward ML with an opinionated CFD cost model. You can use backtrader to build the same thing; this just saves you the first three months and the common mistakes.
 
 **Q: Why does buy-and-hold beat my strategy so often?**
 A: Because equity indices have a structural upward drift, and most tactical strategies trade that drift away in exchange for lower drawdown. The relevant comparison is risk-adjusted, not raw return. Check Calmar and Sortino, not just CAGR.
