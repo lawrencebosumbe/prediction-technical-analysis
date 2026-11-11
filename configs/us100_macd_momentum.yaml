@@ -1,0 +1,14 @@
+meta: {name: "US100 MACD momentum", seed: 42, timezone: UTC}
+data: {provider: csv, symbols: [US100], interval: 1d}
+indicators:
+  sma: [{window: 20}, {window: 50}]
+  macd: {fast: 12, slow: 26, signal: 9}
+signals:
+  combination: any
+  rules:
+    - {type: sma_crossover, fast: 20, slow: 50}
+    - {type: macd_crossover}
+execution: {initial_capital: 100000, risk_per_trade: 0.01, allow_short: true}
+costs: {spread_points: 1.0, slippage_bps: 1.5, financing_daily_bps: 0.02}
+evaluation: {output_dir: reports/us100_macd_momentum}
+

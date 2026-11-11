@@ -1,0 +1,17 @@
+meta: {name: "Multi-asset SMA/MACD comparison", seed: 42, timezone: UTC}
+data:
+  provider: csv
+  symbols: [US30, US500, US100, CAC40, CHINA50, DAX30, FTSE100, NIKKEI225, STOXX50E, BTCUSD]
+  interval: 1d
+indicators:
+  sma: [{window: 10}, {window: 20}]
+  macd: {fast: 12, slow: 26, signal: 9}
+signals:
+  combination: any
+  rules:
+    - {type: sma_crossover, fast: 10, slow: 20}
+    - {type: macd_crossover}
+execution: {initial_capital: 100000, risk_per_trade: 0.01, allow_short: true}
+costs: {spread_points: 1.0, slippage_bps: 2.0, financing_daily_bps: 0.02}
+evaluation: {output_dir: reports/multi_asset_portfolio}
+

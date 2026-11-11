@@ -1,0 +1,14 @@
+meta: {name: "BTCUSD trend following", seed: 42, timezone: UTC}
+data: {provider: csv, symbols: [BTCUSD], interval: 1d}
+indicators:
+  sma: [{window: 10}, {window: 20}]
+  macd: {fast: 12, slow: 26, signal: 9}
+signals:
+  combination: all
+  rules:
+    - {type: sma_crossover, fast: 10, slow: 20}
+    - {type: macd_crossover}
+execution: {initial_capital: 100000, risk_per_trade: 0.01, allow_short: true}
+costs: {spread_points: 10.0, slippage_bps: 5.0, financing_daily_bps: 0.0}
+evaluation: {output_dir: reports/btcusd_trend_following}
+

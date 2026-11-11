@@ -1,0 +1,33 @@
+meta:
+  name: "US500 SMA/MACD baseline"
+  seed: 42
+  timezone: UTC
+data:
+  provider: csv
+  symbols: [US500]
+  start: null
+  end: null
+  interval: 1d
+indicators:
+  sma: [{window: 20}, {window: 50}]
+  macd: {fast: 12, slow: 26, signal: 9}
+signals:
+  combination: all
+  rules:
+    - {type: sma_crossover, fast: 20, slow: 50}
+    - {type: macd_crossover}
+execution:
+  initial_capital: 100000
+  risk_per_trade: 0.01
+  stop_loss_atr: 2.0
+  take_profit_atr: 4.0
+  allow_short: true
+costs:
+  spread_points: 0.5
+  commission_per_lot: 0.0
+  slippage_bps: 1.0
+  financing_daily_bps: 0.02
+  financing_on_weekends: true
+evaluation:
+  output_dir: reports/us500_sma_macd
+
