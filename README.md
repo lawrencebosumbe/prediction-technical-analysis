@@ -69,12 +69,12 @@ The project deliberately does **not** attempt to be a live execution engine. Ins
 - Compute a comprehensive suite of technical indicators, with first-class support for **Simple Moving Averages (SMA)** and the **Moving Average Convergence Divergence (MACD)** family.
 - Convert indicator states into structured, machine-readable trading signals.
 - Layer a prediction model on top of the indicators to estimate directional probability.
-- Backtest the resulting strategies with realistic assumptions — spreads, commissions, slippage, and financing costs specific to **CFD trading**.
+- Backtest the resulting strategies with realistic assumptions. Spreads, commissions, slippage, and financing costs specific to **CFD trading**.
 - Evaluate performance with an institutional-grade metric suite.
 
 The framework has been built with global index CFDs and Bitcoin in mind. Markets covered include **US30, US500, US100, CAC40, China50, DAX30, FTSE100, NIKKEI225, STOXX50E**, and **Bitcoin**. These instruments were not chosen at random: they span three continents, four trading sessions, and a wide spectrum of liquidity, volatility, and behavioural characteristics. A strategy that works on the S&P 500 but fails on the Nikkei 225 is a strategy that has been overfit to one market's microstructure. Testing across all ten forces honesty.
 
-The analytical core rests on two pillars — **SMA** and **MACD** — because these two indicators capture the two fundamental facts of any price series: *level* and *momentum*. Everything else in this repository, including the machine-learning layer, is an elaboration on those two ideas.
+The analytical core rests on two pillars **SMA** and **MACD**. Because these two indicators capture the two fundamental facts of any price series: *level* and *momentum*. Everything else in this repository, including the machine-learning layer, is an elaboration on those two ideas.
 
 ---
 
